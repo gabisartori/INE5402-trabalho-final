@@ -9,6 +9,12 @@ def register_user(user_list):
     user_list.append(user)
     print("User registered successfully!")
 
+
+def queryPost(id, post_list):
+    for post in post_list:
+        if post.id == id:
+            return post
+
 # :?:??????
 def set_post_list(user_list):
     temp = []
