@@ -1,7 +1,7 @@
 class User:
-    def __init__(self, name, private) -> None:
+    def __init__(self, name, id, private) -> None:
         self.name = name
-        self.id = '',
+        self.id = id,
         self.posts = []
         self.private = private
 
