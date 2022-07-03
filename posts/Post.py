@@ -6,7 +6,7 @@ class Post:
         self.liked_by = []
         self.private = self.owner.private
 
-    def like(self, user_id) -> None:
+    def add_like(self, user_id) -> None:
         self.likes += 1
         self.liked_by.append(user_id)
 
