@@ -15,7 +15,7 @@ def login(user_list):
     password = input('Insira a senha: ')
     for user in user_list:
         if name == admin_name and sha256(password) == admin_hash:
-            admin_menu()
+            admin_menu(user_list)
             return
         elif user.name == name and user.password == password:
             print('Login realizado com sucesso!')
@@ -51,12 +51,11 @@ def menu():
 def user_menu(user):
     pass
 
-def admin_menu():
-    options = '''
-    [1] Deletar usuário
-    [2] Deletar publicação
-    [3] Listar usuários
-    [4] Logout
+def admin_menu(user_list):
+    options = '''[1] Deletar usuário
+[2] Deletar publicação
+[3] Listar usuários
+[4] Logout
     '''
     while True:
         print(options)
@@ -66,7 +65,7 @@ def admin_menu():
         elif option == '2':
             delete_post()
         elif option == '3':
-            list_users()
+            list_users(user_list)
         elif option == '4':
             break
         else:
@@ -81,8 +80,9 @@ def delete_user():
 def delete_post():
     pass
 
-def list_users():
-    pass
+def list_users(user_list):
+    for user in user_list:
+        print(user.name)
 
 
 
