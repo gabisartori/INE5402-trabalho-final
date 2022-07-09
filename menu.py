@@ -19,7 +19,7 @@ def login(user_list):
             return
         elif user.name == name and user.password == password:
             print('Login realizado com sucesso!')
-            user_menu()
+            user_menu(user)
             return
     
     print('Usuário ou senha inválidos!')
@@ -28,18 +28,20 @@ def login(user_list):
 
 def menu():
     options = '''[1] Login
-    [2] Cadastre-se
-    [3] Sair
+[2] Cadastre-se
+[3] Sair
     '''
+
+    user_list = []
 
     while True:
         print('Seja bem-vinde ao redwitter!')
         print(options)
         option = input('Digite a opção desejada: ')
         if option == '1':
-            login()
+            login(user_list)
         elif option == '2':
-            register_menu()
+            register_menu(user_list)
         elif option == '3':
             print('Programa encerrado.')
             break

@@ -1,12 +1,17 @@
 from posts.TextPost import TextPost
+import hashlib
+
+def sha256(string):
+    return hashlib.sha256(string.encode('utf-8')).hexdigest()
 
 
 class User:
-    def __init__(self, name, id, private) -> None:
+    def __init__(self, name, id, private, password_hash) -> None:
         self.name = name
         self.id = id,
         self.posts = []
         self.private = private
+        self.password = password_hash
 
     def add_post(self, post) -> None:
         self.posts.append(post)
