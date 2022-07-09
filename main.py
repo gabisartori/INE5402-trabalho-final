@@ -1,4 +1,4 @@
-from User import *
+from user import *
 from posts.Post import *
 from posts.TextPost import *
 from functions import *

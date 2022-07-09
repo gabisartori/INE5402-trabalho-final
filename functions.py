@@ -1,6 +1,7 @@
-from User import *
+from user import *
 from posts.Post import *
 from posts.TextPost import *
+import hashlib
 
 
 def register_user(user_list):
@@ -40,3 +41,7 @@ def show_timeline(user, posts):
     for post in posts:
         if not post.private or post.owner == user:
             show_post(post)
+
+
+def sha256(string):
+    return hashlib.sha256(string.encode('utf-8')).hexdigest()
