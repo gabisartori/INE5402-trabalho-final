@@ -61,7 +61,7 @@ def admin_menu(user_list):
         print(options)
         option = input('Digite a opção desejada: ')
         if option == '1':
-            delete_user()
+            delete_user(user_list)
         elif option == '2':
             delete_post()
         elif option == '3':
@@ -74,8 +74,19 @@ def admin_menu(user_list):
 def register_menu(user_list):
     register_user(user_list)
 
-def delete_user():
-    pass
+def delete_user(user_list):
+    name = input('Insira o nome de usuário que queres deletar: ')
+    if not name == input('Confira o nome de usuário: '):
+        print('Nomes não conferem! Tente novamente.')
+        return        
+    confirm = input('Tem certeza que deseja deletar o usuário? (s/n): ').strip()[0].lower() != 's'
+    if confirm: return
+    for user in user_list:
+        if user.name == name:
+            user_list.remove(user)
+            print('Usuário deletado com sucesso!')
+            return
+
 
 def delete_post():
     pass
