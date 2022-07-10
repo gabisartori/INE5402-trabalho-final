@@ -33,10 +33,10 @@ class Menu:
             option = input('Digite a opção desejada: ')
             if option == '1':
                 # Inicia o menu de login
-                self.login_menu(self.user_list)
+                self.login_menu()
             elif option == '2':
                 # Inicia o menu de cadastro
-                self.register_menu(self.user_list)
+                self.register_menu()
             elif option == '3':
                 # Encerra o programa
                 print('Programa encerrado.')
@@ -44,8 +44,8 @@ class Menu:
             else:
                 print('Opção inválida!')
     
-    def login_menu(self, user_list):
-        if len(user_list) == 0:
+    def login_menu(self):
+        if len(self.user_list) == 0:
             # Não há necessidade de acessar o perfil admin se a rede não tem usuários
             print('Não há usuários cadastrados.')
             print('Para cadastrar um usuário, digite "2" no menu principal.')
@@ -54,10 +54,10 @@ class Menu:
         
         name = input('Insira o nome de usuário: ')
         password = input('Insira a senha: ')
-        for user in user_list:
+        for user in self.user_list:
             if name == self.admin_name and sha256(password) == self.password_hash:
                 # Incia o menu de administrador
-                self.admin_menu(user_list)
+                self.admin_menu(self.user_list)
                 return
             elif user.name == name and user.password == password:
                 print('Login realizado com sucesso!')
