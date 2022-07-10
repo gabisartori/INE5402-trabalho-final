@@ -20,6 +20,11 @@ class Menu:
     def __init__(self, user_list):
         self.user_list = user_list
     
+    def get_post_list(self):
+        temp = []
+        for user in self.user_list:
+            for post in user.post_list:
+                temp.append(post)
 
     def run(self):
         while True:
