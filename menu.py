@@ -1,6 +1,9 @@
 from user import User
 from functions import *
 
+# Talvez eu faça isso ser uma classe
+
+
 def login(user_list):
     if len(user_list) == 0:
         # Não há necessidade de acessar o perfil admin se a rede não tem usuários
