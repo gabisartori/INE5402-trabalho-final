@@ -32,10 +32,10 @@ class User:
             return
         try:
             for post in self.posts[count*5:count*5+5]:
-                print(post.content)
+                post.show_post()
         except:
             for post in self.posts[count*5:]:
-                print(post.content)
+                post.show_post()
     def comment(self, post, comment):
         post.add_reply(TextPost(self, '', comment))
     

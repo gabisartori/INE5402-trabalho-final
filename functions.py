@@ -18,18 +18,10 @@ def set_post_list(user_list):
 
     return temp
 
-def show_post_replies(post):
-    pass
 
-def show_post(post: Post):
-    print('='*30)
-    if post.title:
-        print(post.owner.name + ": " + post.title)
-    print(post.content)
-    print("Likes: " + str(post.likes))
-    show_post_replies(post)
+
     
-def show_timeline(user, posts):
-    for post in posts:
-        if not post.private or post.owner == user:
-            show_post(post)
+# def show_timeline(user, posts):
+#         for post in posts:
+#             if not post.private or post.owner == user:
+#                 show_post(post)
