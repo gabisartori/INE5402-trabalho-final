@@ -2,21 +2,6 @@ from user import *
 from posts.post import *
 from posts.textpost import *
 import hashlib
-
-
-
-# Todo otimizar isso aí
-def register_user(user_list):
-    name = input("Insira seu nome de usuário: ")
-    private = input("Essa conta será privada? (s/n): ").strip()[0].lower() == 's'
-    password = input("Insira sua senha: ")
-    if password == input('Confira sua senha: '):
-        user = User(name, len(user_list), private, password)
-        user_list.append(user)
-        print("Usuário cadastrado com sucesso!")
-    else:
-        print('Senhas não conferem! Tente novamente.')
-        register_user(user_list)
     
 
 def queryPost(id, post_list):

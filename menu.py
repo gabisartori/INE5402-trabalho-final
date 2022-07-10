@@ -94,7 +94,7 @@ class Menu:
             print("Usuário cadastrado com sucesso!")
         else:
             print('Senhas não conferem! Tente novamente.')
-            register_user()
+            self.register_menu()
     
     def admin_menu(self):
         while True:
