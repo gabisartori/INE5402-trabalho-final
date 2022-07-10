@@ -13,7 +13,7 @@ def register_user(user_list):
     if password == input('Confira sua senha: '):
         user = User(name, len(user_list), private, password)
         user_list.append(user)
-        print("User registered successfully!")
+        print("Usuário cadastrado com sucesso!")
     else:
         print('Senhas não conferem! Tente novamente.')
         register_user(user_list)

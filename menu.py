@@ -2,22 +2,28 @@ from user import *
 from functions import *
 
 class Menu:
-    menu_options = '''[1] Login
+    menu_options = '''==============================
+[1] Login
 [2] Cadastre-se
 [3] Sair
-    '''
+==============================
+'''
 
-    admin_options = '''[1] Deletar usuário
+    admin_options = '''==============================
+[1] Deletar usuário
 [2] Deletar publicação
 [3] Listar usuários
 [4] Logout
-    '''
+==============================
+'''
 
-    user_options = '''[1] Criar publicação
+    user_options = '''==============================
+[1] Criar publicação
 [2] Mostrar próxima página de publicações
 [3] Acessar perfil
 [4] Buscar perfil
 [5] Logout
+==============================
 '''
 
     admin_name = 'admin'
@@ -35,6 +41,7 @@ class Menu:
 
     def run(self):
         while True:
+            print()
             print('Seja bem-vinde ao redwitter!')
             print(self.menu_options)
             option = input('Digite a opção desejada: ')
@@ -84,7 +91,7 @@ class Menu:
             # Cria o usuário e o adiciona na lista de usuários do programa
             user = User(name, len(self.user_list), private, password)
             self.user_list.append(user)
-            print("User registered successfully!")
+            print("Usuário cadastrado com sucesso!")
         else:
             print('Senhas não conferem! Tente novamente.')
             register_user()

@@ -7,8 +7,11 @@ def sha256(string):
 
 class User:
 
-    profile_options = '''[1] Carregar mais publicações
-[2] Sair'''
+    profile_options = '''==============================
+[1] Carregar mais publicações
+[2] Sair
+==============================
+'''
     def __init__(self, name, id, private, password_hash) -> None:
         self.name = name
         self.id = id,
