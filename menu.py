@@ -13,6 +13,13 @@ class Menu:
 [4] Logout
     '''
 
+    user_options = '''[1] Criar publicação
+[2] Mostrar próxima página de publicações
+[3] Acessar perfil
+[4] Buscar perfil
+[5] Logout
+'''
+
     admin_name = 'admin'
     admin_password = 'admin'
     password_hash = sha256(admin_password)
@@ -123,5 +130,25 @@ class Menu:
         for user in self.user_list:
             print(user.name)
 
-    def user_menu(self, user):
-        pass
+    def user_menu(self, user: User):
+        while True:
+            print(self.user_options)
+            option = input('Digite a opção desejada: ')
+            if option == '1':
+                # Incia o menu de criar publicação
+                post = TextPost(user, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
+                user.add_post(post)
+            elif option == '2':
+                # Incia o menu de mostrar próxima página de publicações
+                self.show_next_page(user)
+            elif option == '3':
+                # Incia o menu de acessar perfil
+                user.profile_menu()
+            elif option == '4':
+                # Incia o menu de buscar perfil
+                self.search_profile(user)
+            elif option == '5':
+                # Encerra o menu do usuário
+                break
+            else:
+                print('Opção inválida!')

@@ -1,6 +1,6 @@
 from user import *
-from posts.Post import *
-from posts.TextPost import *
+from posts.post import *
+from posts.textpost import *
 import hashlib
 
 
