@@ -57,7 +57,7 @@ class Menu:
         for user in self.user_list:
             if name == self.admin_name and sha256(password) == self.password_hash:
                 # Incia o menu de administrador
-                self.admin_menu(self.user_list)
+                self.admin_menu()
                 return
             elif user.name == name and user.password == password:
                 print('Login realizado com sucesso!')
@@ -80,7 +80,7 @@ class Menu:
             print("User registered successfully!")
         else:
             print('Senhas não conferem! Tente novamente.')
-            register_user(self.user_list)
+            register_user()
     
     def admin_menu(self):
         while True:
@@ -88,13 +88,13 @@ class Menu:
             option = input('Digite a opção desejada: ')
             if option == '1':
                 # Incia o menu de deletar usuário
-                self.delete_user(self.user_list)
+                self.delete_user()
             elif option == '2':
                 # Incia o menu de deletar publicação
                 self.delete_post()
             elif option == '3':
                 # Incia o menu de listar usuários
-                self.list_users(self.user_list)
+                self.list_users()
             elif option == '4':
                 # Encerra o menu de administrador
                 break
@@ -123,5 +123,5 @@ class Menu:
         for user in self.user_list:
             print(user.name)
 
-    def user_menu(self):
+    def user_menu(self, user):
         pass
