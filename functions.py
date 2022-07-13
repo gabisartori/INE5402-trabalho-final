@@ -17,11 +17,3 @@ def set_post_list(user_list):
             temp.append(post)
 
     return temp
-
-
-
-    
-# def show_timeline(user, posts):
-#         for post in posts:
-#             if not post.private or post.owner == user:
-#                 show_post(post)

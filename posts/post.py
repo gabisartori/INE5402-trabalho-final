@@ -1,3 +1,5 @@
+import time
+
 class Post:
     def __init__(self, owner) -> None:
         self.likes = 0
@@ -5,6 +7,7 @@ class Post:
         self.replies = []
         self.liked_by = []
         self.private = self.owner.private
+        self.created_at = time.time()
 
     def add_like(self, user_id) -> None:
         self.likes += 1

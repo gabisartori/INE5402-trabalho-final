@@ -1,4 +1,5 @@
 from posts.textpost import TextPost
+from posts.imagepost import ImagePost
 import hashlib
 
 def sha256(string):
@@ -12,6 +13,11 @@ class User:
 [2] Sair
 ==============================
 '''
+
+    create_options = '''==============================
+[1] Criar publicação de texto
+[2] Criar publicação de imagem
+'''
     def __init__(self, name, id, private, password_hash) -> None:
         self.name = name
         self.id = id,
@@ -19,12 +25,19 @@ class User:
         self.private = private
         self.password = password_hash
 
-    def add_post(self, post) -> None:
+    def create_and_add_post(self) -> None:
+        print(self.create_options)
+        option = input('Digite a opção desejada: ')
+        if option == '1':
+            post = TextPost(self, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
+        elif option == '2':
+            post = ImagePost(self, input('Insira o título da publicação: '), input('Insira o link da imagem: '))
         self.posts.append(post)
     
     def build_feed(self, all_posts) -> None:
         for post in all_posts:
-            if not post.owner.private: print(post.content) 
+            if not post.owner.private: 
+                post.show_post()
     
     def build_my_feed(self, count):
         if count*5 > len(self.posts):
@@ -36,6 +49,8 @@ class User:
         except:
             for post in self.posts[count*5:]:
                 post.show_post()
+    
+    
     def comment(self, post, comment):
         post.add_reply(TextPost(self, '', comment))
     

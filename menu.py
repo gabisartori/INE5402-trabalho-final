@@ -74,6 +74,7 @@ class Menu:
                 self.admin_menu()
                 return
             elif user.name == name and user.password == password:
+                print()
                 print('Login realizado com sucesso!')
                 # Incia o menu do usuário logado
                 self.user_menu(user)
@@ -131,7 +132,20 @@ class Menu:
                 return
 
     def delete_post(self):
-        pass
+        posts = self.get_post_list()
+        # Coleta e confirma o id da publicação a ser deletada
+        id = input('Insira o id da publicação que queres deletar: ')
+        if not id == input('Confira o id da publicação: '):
+            print('Ids não conferem! Tente novamente.')
+            return
+        confirm = input('Tem certeza que deseja deletar a publicação? (s/n): ').strip()[0].lower() != 's'
+        if confirm: return
+        # Busca e remove a publicação da lista de publicações do usuário
+        for post in posts:
+            if post.id == id:
+                post.owner.posts.remove(post)
+                print('Publicação deletada com sucesso!')
+                return
 
     def list_users(self):
         for user in self.user_list:
@@ -143,8 +157,7 @@ class Menu:
             option = input('Digite a opção desejada: ')
             if option == '1':
                 # Incia o menu de criar publicação
-                post = TextPost(user, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
-                user.add_post(post)
+                user.create_and_add_post()
             elif option == '2':
                 # Incia o menu de mostrar próxima página de publicações
                 self.show_next_page(user)
@@ -159,3 +172,15 @@ class Menu:
                 break
             else:
                 print('Opção inválida!')
+
+    def search_profile(self, user: User):
+        # Coleta o nome do usuário a ser buscado
+        name = input('Insira o nome de usuário que queres buscar: ')
+        # Busca o usuário na lista de usuários do programa
+        for other_user in self.user_list:
+            if other_user.name == name and other_user != user and not other_user.private:
+                # Incia o menu de perfil do usuário buscado
+                other_user.profile_menu()
+                return
+        print('Usuário não encontrado!')
+    
