@@ -32,13 +32,21 @@ class User:
             post = TextPost(self, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
         elif option == '2':
             post = ImagePost(self, input('Insira o título da publicação: '), input('Insira o link da imagem: '))
-        self.posts.append(post)
-    
-    def build_feed(self, all_posts) -> None:
-        for post in all_posts:
-            if not post.owner.private: 
+        else:
+            print('Opção inválida!')
+            return
+        self.posts.insert(0, post)
+        
+    def build_feed(self, all_posts, count) -> None:
+        if count *5 > len(all_posts):
+            print('Não há mais publicações.')
+            return
+        try:
+            for post in all_posts[count*5:count*5+5]:
                 post.show_post()
-    
+        except:
+            for post in all_posts[count*5:]:
+                post.show_post()
     def build_my_feed(self, count):
         if count*5 > len(self.posts):
             print('Não há mais publicações.')

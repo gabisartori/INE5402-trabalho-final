@@ -6,7 +6,7 @@ class TextPost(Post):
         self.title = title
         self.content = content
 
-    def show_post(self,):
+    def show_post(self):
         print('='*30)
         if self.title:
             print(self.owner.name + ": " + self.title)

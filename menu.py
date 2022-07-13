@@ -22,13 +22,17 @@ class Menu:
 [2] Mostrar próxima página de publicações
 [3] Acessar perfil
 [4] Buscar perfil
-[5] Logout
+[5] Abrir publicação
+[6] Recarregar feed
+[0] Logout
 ==============================
 '''
+
 
     admin_name = 'admin'
     admin_password = 'admin'
     password_hash = sha256(admin_password)
+    #admin_hash = ''
 
     def __init__(self, user_list):
         self.user_list = user_list
@@ -36,8 +40,11 @@ class Menu:
     def get_post_list(self):
         temp = []
         for user in self.user_list:
-            for post in user.post_list:
+            for post in user.posts:
                 temp.append(post)
+        
+        temp.sort(key= lambda x: x.created_at, reverse=True)
+        return temp
 
     def run(self):
         while True:
@@ -73,7 +80,7 @@ class Menu:
                 # Incia o menu de administrador
                 self.admin_menu()
                 return
-            elif user.name == name and user.password == password:
+            elif user.name == name and user.password == sha256(password):
                 print()
                 print('Login realizado com sucesso!')
                 # Incia o menu do usuário logado
@@ -90,7 +97,7 @@ class Menu:
         password = input("Insira sua senha: ")
         if password == input('Confira sua senha: '):
             # Cria o usuário e o adiciona na lista de usuários do programa
-            user = User(name, len(self.user_list), private, password)
+            user = User(name, len(self.user_list), private, sha256(password))
             self.user_list.append(user)
             print("Usuário cadastrado com sucesso!")
         else:
@@ -152,6 +159,7 @@ class Menu:
             print(user.name)
 
     def user_menu(self, user: User):
+        count = 0
         while True:
             print(self.user_options)
             option = input('Digite a opção desejada: ')
@@ -160,7 +168,8 @@ class Menu:
                 user.create_and_add_post()
             elif option == '2':
                 # Incia o menu de mostrar próxima página de publicações
-                self.show_next_page(user)
+                user.build_feed(self.get_post_list(), count)
+                count += 1
             elif option == '3':
                 # Incia o menu de acessar perfil
                 user.profile_menu()
@@ -168,6 +177,19 @@ class Menu:
                 # Incia o menu de buscar perfil
                 self.search_profile(user)
             elif option == '5':
+                # Recebe a publicação a ser aberta e a exibe
+                publi = input('Insira o título da publicação a ser aberta: ')
+                for post in user.posts:
+                    if post.title == publi:
+                        post.post_menu(self, user)
+                        break
+                if not any(post.title == publi for post in user.posts):
+                    print('Publicação não encontrada!')
+            elif option == '6':
+                # Coloca o contador a zero, de modo a mostrar as publicações mais recentes
+                count = 0
+            
+            elif option == '0':
                 # Encerra o menu do usuário
                 break
             else:
@@ -184,3 +206,6 @@ class Menu:
                 return
         print('Usuário não encontrado!')
     
+
+    def comment_menu(self):
+        pass

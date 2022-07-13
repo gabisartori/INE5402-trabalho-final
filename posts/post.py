@@ -1,6 +1,13 @@
 import time
 
 class Post:
+    
+    post_options = '''==============================
+[1] Curtir
+[2] Comentar
+[3] Sair
+'''
+    
     def __init__(self, owner) -> None:
         self.likes = 0
         self.owner = owner
@@ -16,3 +23,21 @@ class Post:
     def add_reply(self, reply) -> None:
         self.replies.append(reply)
     
+    def post_menu(self, menu, viewer):
+        self.show_post()
+        while True:
+            print(self.post_options)
+            option = input('Digite a opção desejada: ')
+            if option == '1':
+                # Adiciona uma curtida à publicação
+                self.add_like(viewer.id)
+                print('Curtida adicionada com sucesso!')
+            elif option == '2':
+                # Incia o menu de comentar
+                self.comment_menu()
+            elif option == '3':
+                # Encerra o menu de publicação
+                break
+
+    def comment_menu(self):
+        pass
