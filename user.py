@@ -67,4 +67,5 @@ class User:
             elif option == '2':
                 print('Saindo do perfil.')
                 break
-            
+            else:
+                print('Opção inválida!')
