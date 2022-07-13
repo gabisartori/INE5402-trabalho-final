@@ -8,7 +8,7 @@ class Post:
 [3] Sair
 '''
     
-    def __init__(self, owner) -> None:
+    def __init__(self, owner):
         self.likes = 0
         self.owner = owner
         self.replies = []
@@ -16,11 +16,11 @@ class Post:
         self.private = self.owner.private
         self.created_at = time.time()
 
-    def add_like(self, user_id) -> None:
+    def add_like(self, user_id):
         self.likes += 1
         self.liked_by.append(user_id)
 
-    def add_reply(self, reply) -> None:
+    def add_reply(self, reply):
         self.replies.append(reply)
     
     def post_menu(self, menu, viewer):

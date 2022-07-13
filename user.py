@@ -18,14 +18,14 @@ class User:
 [1] Criar publicação de texto
 [2] Criar publicação de imagem
 '''
-    def __init__(self, name, id, private, password_hash) -> None:
+    def __init__(self, name, id, private, password_hash):
         self.name = name
         self.id = id,
         self.posts = []
         self.private = private
         self.password = password_hash
 
-    def create_and_add_post(self) -> None:
+    def create_and_add_post(self):
         print(self.create_options)
         option = input('Digite a opção desejada: ')
         if option == '1':
@@ -37,7 +37,7 @@ class User:
             return
         self.posts.insert(0, post)
         
-    def build_feed(self, all_posts, count) -> None:
+    def build_feed(self, all_posts, count):
         if count *5 > len(all_posts):
             print('Não há mais publicações.')
             return
