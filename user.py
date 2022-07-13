@@ -25,17 +25,34 @@ class User:
         self.private = private
         self.password = password_hash
 
-    def create_and_add_post(self):
-        print(self.create_options)
-        option = input('Digite a opção desejada: ')
-        if option == '1':
-            post = TextPost(self, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
-        elif option == '2':
-            post = ImagePost(self, input('Insira o título da publicação: '), input('Insira o link da imagem: '))
-        else:
-            print('Opção inválida!')
-            return
-        self.posts.insert(0, post)
+    def allow_post(self, menu_creation_time):
+        # Retorna False se a conta tiver publicado mais de X vezes num Y intervalo de tempo 
+        if not self.posts: return True
+        posts_by_minute = {}
+        for post in self.posts:
+            time_diff = post.created_at - menu_creation_time 
+            time_diff_minutes = time_diff // 60
+            if str(time_diff) in posts_by_minute.keys(): posts_by_minute[str(time_diff_minutes)] += 1
+            else: posts_by_minute[str(time_diff_minutes)] = 1
+        
+        if posts_by_minute[str(time_diff_minutes)] > 5:
+            return False
+        
+        return True
+
+    def create_and_add_post(self, menu_creation_time):
+        if self.allow_post(menu_creation_time):
+            print(self.create_options)
+            option = input('Digite a opção desejada: ')
+            if option == '1':
+                post = TextPost(self, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
+            elif option == '2':
+                post = ImagePost(self, input('Insira o título da publicação: '), input('Insira o link da imagem: '))
+            else:
+                print('Opção inválida!')
+                return
+            self.posts.insert(0, post)
+        else: print('Você já publicou demais por hoje, volte amanhã.')
         
     def build_feed(self, all_posts, count):
         if count *5 > len(all_posts):

@@ -1,5 +1,6 @@
 from user import *
 from functions import *
+import time
 
 class Menu:
     menu_options = '''==============================
@@ -36,7 +37,8 @@ class Menu:
 
     def __init__(self, user_list):
         self.user_list = user_list
-    
+        self.creation_time = time.time()
+        
     def get_post_list(self):
         temp = []
         for user in self.user_list:
@@ -165,7 +167,7 @@ class Menu:
             option = input('Digite a opção desejada: ')
             if option == '1':
                 # Incia o menu de criar publicação
-                user.create_and_add_post()
+                user.create_and_add_post(self.creation_time)
             elif option == '2':
                 # Incia o menu de mostrar próxima página de publicações
                 user.build_feed(self.get_post_list(), count)
