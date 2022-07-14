@@ -7,3 +7,12 @@ class ImagePost(Post):
         super().__init__(owner)
         self.title = title
         self.image_link = image_link
+    
+    def show_post(self):
+        print('='*30)
+        if self.title:
+            print(self.owner.name + ": " + self.title)
+            # todo
+            # show the image
+            print("Likes: " + str(self.likes))
+            self.show_post_replies(self)

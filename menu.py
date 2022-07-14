@@ -95,11 +95,15 @@ class Menu:
     def register_menu(self):
         # Coleta os dados do usuário
         name = input("Insira seu nome de usuário: ")
+        email = input("Insira um email válido: ")
+        if any([user.email == email for user in self.user_list]):
+            print('Email já cadastrado! Tente novamente.')
+            return
         private = input("Essa conta será privada? (s/n): ").strip()[0].lower() == 's'
         password = input("Insira sua senha: ")
         if password == input('Confira sua senha: '):
             # Cria o usuário e o adiciona na lista de usuários do programa
-            user = User(name, len(self.user_list), private, sha256(password))
+            user = User(name, email, private, sha256(password))
             self.user_list.append(user)
             print("Usuário cadastrado com sucesso!")
         else:

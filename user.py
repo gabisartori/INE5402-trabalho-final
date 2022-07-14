@@ -18,16 +18,15 @@ class User:
 [1] Criar publicação de texto
 [2] Criar publicação de imagem
 '''
-    def __init__(self, name, id, private, password_hash):
+    def __init__(self, name, email, private, password_hash):
         self.name = name
-        self.id = id,
+        self.email = email,
         self.posts = []
         self.private = private
         self.password = password_hash
 
     def allow_post(self, menu_creation_time):
-        # Retorna False se a conta tiver publicado mais de X vezes num Y intervalo de tempo 
-        if not self.posts: return True
+        '''Retorna False se a conta tiver publicado mais de X vezes num Y intervalo de tempo'''
         posts_by_minute = {}
         for post in self.posts:
             time_diff = post.created_at - menu_creation_time 
@@ -64,6 +63,7 @@ class User:
         except:
             for post in all_posts[count*5:]:
                 post.show_post()
+    
     def build_my_feed(self, count):
         if count*5 > len(self.posts):
             print('Não há mais publicações.')
@@ -74,10 +74,6 @@ class User:
         except:
             for post in self.posts[count*5:]:
                 post.show_post()
-    
-    
-    def comment(self, post, comment):
-        post.add_reply(TextPost(self, '', comment))
     
     def profile_menu(self):
         print(self.name)
@@ -94,3 +90,6 @@ class User:
                 break
             else:
                 print('Opção inválida!')
+    
+    def comment(self, post, comment):
+        post.add_reply(TextPost(self, '', comment))
