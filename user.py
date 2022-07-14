@@ -59,6 +59,7 @@ class User:
         else: print('Você já publicou demais por hoje, volte amanhã.')
         
     def build_feed(self, all_posts, count):
+        all_posts = [post for post in all_posts if not post.owner.private or post.owner is self]
         if count *5 > len(all_posts):
             print('Não há mais publicações.')
             return
