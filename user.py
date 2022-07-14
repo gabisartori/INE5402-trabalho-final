@@ -1,6 +1,7 @@
 from posts.textpost import TextPost
 from posts.imagepost import ImagePost
 import hashlib
+import time
 
 def sha256(string):
     return hashlib.sha256(string.encode('utf-8')).hexdigest()
@@ -35,7 +36,10 @@ class User:
             if str(time_diff_minutes) in posts_by_minute.keys(): posts_by_minute[str(time_diff_minutes)] += 1
             else: posts_by_minute[str(time_diff_minutes)] = 1
         
-        if posts_by_minute[str(time_diff_minutes)] > 5:
+        current_minute = str((time.time() - menu_creation_time) // 60)
+        if current_minute not in posts_by_minute.keys():
+            return True
+        if posts_by_minute[str(current_minute)] > 5:
             return False
         
         return True
