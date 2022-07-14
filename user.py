@@ -21,7 +21,7 @@ class User:
 '''
     def __init__(self, name, email, private, password_hash):
         self.name = name
-        self.email = email,
+        self.email = email
         self.posts = []
         self.private = private
         self.password = password_hash
