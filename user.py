@@ -33,7 +33,8 @@ class User:
             time_diff_minutes = time_diff // 60
             if str(time_diff) in posts_by_minute.keys(): posts_by_minute[str(time_diff_minutes)] += 1
             else: posts_by_minute[str(time_diff_minutes)] = 1
-        
+        print(posts_by_minute)
+
         if posts_by_minute[str(time_diff_minutes)] > 5:
             return False
         
