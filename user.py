@@ -27,14 +27,14 @@ class User:
 
     def allow_post(self, menu_creation_time):
         '''Retorna False se a conta tiver publicado mais de X vezes num Y intervalo de tempo'''
+        if not self.posts: return True
         posts_by_minute = {}
         for post in self.posts:
             time_diff = post.created_at - menu_creation_time 
             time_diff_minutes = time_diff // 60
             if str(time_diff) in posts_by_minute.keys(): posts_by_minute[str(time_diff_minutes)] += 1
             else: posts_by_minute[str(time_diff_minutes)] = 1
-        print(posts_by_minute)
-
+        
         if posts_by_minute[str(time_diff_minutes)] > 5:
             return False
         
