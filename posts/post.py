@@ -23,7 +23,7 @@ class Post:
     def add_reply(self, reply):
         self.replies.append(reply)
     
-    def post_menu(self, menu, viewer):
+    def post_menu(self, viewer):
         self.show_post()
         while True:
             print(self.post_options)

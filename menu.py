@@ -195,7 +195,7 @@ class Menu:
                 publi = input('Insira o título da publicação a ser aberta: ')
                 for post in self.get_post_list():
                     if post.title == publi:
-                        post.post_menu(self, user)
+                        post.post_menu(user)
                         break
                 if not any(post.title == publi for post in user.posts):
                     print('Publicação não encontrada!')
