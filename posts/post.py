@@ -16,9 +16,9 @@ class Post:
         self.private = self.owner.private
         self.created_at = time.time()
 
-    def add_like(self, user_id):
+    def add_like(self, user_email):
         self.likes += 1
-        self.liked_by.append(user_id)
+        self.liked_by.append(user_email)
 
     def add_reply(self, reply):
         self.replies.append(reply)
@@ -30,7 +30,7 @@ class Post:
             option = input('Digite a opção desejada: ')
             if option == '1':
                 # Adiciona uma curtida à publicação
-                self.add_like(viewer.id)
+                self.add_like(viewer.email)
                 print('Curtida adicionada com sucesso!')
             elif option == '2':
                 # Incia o menu de comentar
