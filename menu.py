@@ -64,6 +64,14 @@ class Menu:
                 # Encerra o programa
                 print('Programa encerrado.')
                 break
+            # Opção secreta para testes
+            elif option == '0':
+                user = User('Gabriel', 'gabriel.sartorirangel@gmail.com', False, sha256('gabriel'))
+                self.user_list.append(user)
+                user = User('Sofia', 'sofia.sartori@gmail.com', False, sha256('sofia'))
+                self.user_list.append(user)
+                user = User('Gabriel Rcha', 'rocha@gmail.com', True, sha256('rocha'))
+                self.user_list.append(user)            
             else:
                 print('Opção inválida!')
     
