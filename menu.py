@@ -193,7 +193,7 @@ class Menu:
             elif option == '5':
                 # Recebe a publicação a ser aberta e a exibe
                 publi = input('Insira o título da publicação a ser aberta: ')
-                for post in user.posts:
+                for post in self.get_post_list():
                     if post.title == publi:
                         post.post_menu(self, user)
                         break
