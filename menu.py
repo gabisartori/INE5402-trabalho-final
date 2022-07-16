@@ -219,7 +219,3 @@ class Menu:
                 other_user.profile_menu()
                 return
         print('Usuário não encontrado!')
-    
-
-    def comment_menu(self):
-        pass
