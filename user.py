@@ -96,6 +96,3 @@ class User:
                 break
             else:
                 print('Opção inválida!')
-    
-    def comment(self, post, comment):
-        post.add_reply(TextPost(self, '', comment))

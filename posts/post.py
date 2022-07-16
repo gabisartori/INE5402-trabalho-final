@@ -17,9 +17,13 @@ class Post:
         self.private = self.owner.private
         self.created_at = time.time()
 
-    def add_like(self, user_email):
-        self.likes += 1
-        self.liked_by.append(user_email)
+    def add_like(self, user):
+        if user not in self.liked_by:
+            self.likes += 1
+            self.liked_by.append(user)
+            print('Curtiu!')
+        else:
+            print('Você já curtiu esta publicação!')
 
     def add_reply(self, reply):
         self.replies.insert(0, reply)

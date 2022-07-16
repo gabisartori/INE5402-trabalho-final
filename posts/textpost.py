@@ -10,13 +10,15 @@ class TextPost(Post):
         print('='*30)
         if self.title:
             print(self.owner.name + ": " + self.title)
-            print(self.content)
-            print("Likes: " + str(self.likes))
-            self.show_post_replies(self)
-        
+        else:
+            print(self.owner.name + " respondeu:")
+        print(self.content)
+        print("Likes: " + str(self.likes))
+    
     def show_post_replies(self):
-        pass
-
+        for reply in self.replies:
+            reply.show_post()
+            
     def post_menu(self, viewer):
         self.show_post()
         while True:
@@ -24,13 +26,12 @@ class TextPost(Post):
             option = input('Digite a opção desejada: ')
             if option == '1':
                 # Adiciona uma curtida à publicação
-                self.add_like(viewer.email)
-                print('Curtida adicionada com sucesso!')
+                self.add_like(viewer)
             elif option == '2':
                 # Incia o menu de comentar
-                self.comment_menu()
+                self.comment_menu(viewer)
             elif option == '3':
-                pass
+                self.show_post_replies()
             elif option == '0':
                 # Encerra o menu de publicação
                 break

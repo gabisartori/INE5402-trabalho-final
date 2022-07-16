@@ -15,4 +15,4 @@ class ImagePost(Post):
             # todo
             # show the image
             print("Likes: " + str(self.likes))
-            self.show_post_replies(self)
+            self.show_post_replies()
