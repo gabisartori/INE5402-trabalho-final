@@ -51,7 +51,14 @@ class User:
             if option == '1':
                 post = TextPost(self, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
             elif option == '2':
-                post = ImagePost(self, input('Insira o título da publicação: '), input('Insira o link da imagem: '))
+                titulo = input('Insira o título da publicação: ')
+                link = input('Insira o link da imagem: ')
+                try:
+                    open(f'ascii_arts/{link}.txt', 'r')
+                    post = ImagePost(self, titulo, link)
+                except FileNotFoundError:
+                    print('Arquivo não encontrado!')
+                    return
             else:
                 print('Opção inválida!')
                 return
