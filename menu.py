@@ -1,5 +1,4 @@
 from user import *
-from functions import *
 import time
 
 class Menu:
