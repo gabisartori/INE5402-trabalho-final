@@ -49,6 +49,8 @@ class Menu:
 
     def run(self):
         '''Cria um menu com as opções para login, cadastro e encerrar programa'''
+        def delete_user(user):
+            self.user_list.remove(user)
         while True:
             print()
             print('Seja bem-vinde ao redwitter!')
@@ -66,11 +68,11 @@ class Menu:
                 break
             # Opção secreta para testes
             elif option == '0':
-                user = User('Gabriel', 'gabriel.sartorirangel@gmail.com', False, sha256('gabriel'))
+                user = User('Gabriel', 'gabriel.sartorirangel@gmail.com', False, sha256('gabriel'), delete_user)
                 self.user_list.append(user)
-                user = User('Sofia', 'sofia.sartori@gmail.com', False, sha256('sofia'))
+                user = User('Sofia', 'sofia.sartori@gmail.com', False, sha256('sofia'), delete_user)
                 self.user_list.append(user)
-                user = User('Gabriel Rcha', 'rocha@gmail.com', True, sha256('rocha'))
+                user = User('Gabriel Rcha', 'rocha@gmail.com', True, sha256('rocha'), delete_user)
                 self.user_list.append(user)            
             else:
                 print('Opção inválida!')
@@ -104,6 +106,8 @@ class Menu:
     def register_menu(self):
         '''Pede as informações e cria um novo usuário, armazenando-o numa lista de usuários'''
         # Coleta os dados do usuário
+        def delete_user(user):
+            self.user_list.remove(user)
         name = input("Insira seu nome de usuário: ")
         email = input("Insira um email válido: ")
         if any([user.email == email for user in self.user_list]):
@@ -113,7 +117,7 @@ class Menu:
         password = input("Insira sua senha: ")
         if password == input('Confira sua senha: '):
             # Cria o usuário e o adiciona na lista de usuários do programa
-            user = User(name, email, private, sha256(password))
+            user = User(name, email, private, sha256(password), delete_user)
             self.user_list.append(user)
             print("Usuário cadastrado com sucesso!")
         else:

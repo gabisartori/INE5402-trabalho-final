@@ -32,12 +32,13 @@ class User:
 [3] Mudar senha
 '''
 
-    def __init__(self, name, email, private, password_hash):
+    def __init__(self, name, email, private, password_hash, delete_self):
         self.name = name
         self.email = email
         self.posts = []
         self.private = private
         self.password = password_hash
+        self.delete_account = delete_self
 
     def allow_post(self, menu_creation_time):
         '''Retorna False se a conta tiver publicado mais de X vezes num Y intervalo de tempo'''
@@ -144,12 +145,12 @@ class User:
                 print('Opção inválida!')
 
 
-    def change_info_menu(self, user):
+    def change_info_menu(self):
         '''Menu de alteração de informações de cadastro'''
         print(self.change_info_options)
         option = input('Digite a opção desejada: ')
         if option == '1':
-            self.delete_account()
+            self.delete_account(self)
         elif option == '2':
             self.change_name()
         elif option == '3':
@@ -157,10 +158,6 @@ class User:
         else:
             print('Opção inválida!')
     
-
-    def delete_account(self):
-        pass
-
     def change_name(self):
         '''Pergunta o novo nome do usuário e altera o nome'''
         new_name = input('Insira o novo nome: ')
