@@ -12,6 +12,12 @@ class User:
     profile_options = '''==============================
 [1] Carregar mais publicações
 [2] Sair
+'''
+
+    own_profile_options = '''==============================
+[1] Carregar mais publicações
+[2] Alterar informações de cadastro
+[3] Sair
 ==============================
 '''
 
@@ -19,6 +25,13 @@ class User:
 [1] Criar publicação de texto
 [2] Criar publicação de imagem
 '''
+
+    change_info_options = '''==============================
+[1] Excluir conta
+[2] Mudar nome de usuário
+[3] Mudar senha
+'''
+
     def __init__(self, name, email, private, password_hash):
         self.name = name
         self.email = email
@@ -95,8 +108,26 @@ class User:
             for post in self.posts[count*5:]:
                 post.show_post()
     
-    def profile_menu(self):
+    def own_profile_menu(self):
         '''Menu de perfil do usuário, permitindo que o usuário veja as próprias publicações e altere suas informações de cadastro'''
+        print(self.name)
+        print('='*30)
+        count = 0
+        while True:
+            print(self.own_profile_options)
+            option = input('Digite a opção desejada: ')
+            if option == '1':
+                self.build_my_feed(count)
+                count += 1
+            elif option == '2':
+                self.change_info_menu(self)
+            elif option == '3':
+                print('Saindo do perfil.')
+                break
+            else:
+                print('Opção inválida!')
+
+    def profile_menu(self):
         print(self.name)
         print('='*30)
         count = 0
@@ -111,3 +142,27 @@ class User:
                 break
             else:
                 print('Opção inválida!')
+
+
+    def change_info_menu(self, user):
+        '''Menu de alteração de informações de cadastro'''
+        print(self.change_info_options)
+        option = input('Digite a opção desejada: ')
+        if option == '1':
+            self.delete_account()
+        elif option == '2':
+            self.change_name()
+        elif option == '3':
+            self.change_password()
+        else:
+            print('Opção inválida!')
+    
+
+    def delete_account(self):
+        pass
+
+    def change_name(self):
+        pass
+
+    def change_password(self):
+        pass

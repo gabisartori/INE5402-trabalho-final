@@ -194,7 +194,7 @@ class Menu:
                 count += 1
             elif option == '3':
                 # Incia o menu de acessar perfil
-                user.profile_menu()
+                user.own_profile_menu()
             elif option == '4':
                 # Incia o menu de buscar perfil
                 self.search_profile(user)
