@@ -18,6 +18,8 @@ class Post:
         self.created_at = time.time()
 
     def add_like(self, user):
+        '''Incrementa o número de curtidas do post e adiciona o usuário que curtiu na lista de quem curtiu o post'''
+        # Checa se o usuário já curtiu a publicação
         if user not in self.liked_by:
             self.likes += 1
             self.liked_by.append(user)
@@ -26,9 +28,11 @@ class Post:
             print('Você já curtiu esta publicação!')
 
     def add_reply(self, reply):
+        '''Adiciona uma resposta à lista de respostas do post'''
         self.replies.insert(0, reply)
     
     def post_menu(self, viewer):
+        '''Menu de opções para o usuário interagir com a publicação'''
         self.show_post()
         while True:
             print(self.post_options)
@@ -44,6 +48,8 @@ class Post:
             elif option == '0':
                 # Encerra o menu de publicação
                 break
+
     def show_post_replies(self):
+        '''Mostra as respostas da publicação'''
         for reply in self.replies:
             reply.show_post()

@@ -45,13 +45,18 @@ class User:
         return True
 
     def create_and_add_post(self, menu_creation_time):
+        '''Pergunta o tipo de publicação a ser criada e cria a publicação'''
+        # Checa se o usuário ainda pode publicar no intervalo de tempo
         if self.allow_post(menu_creation_time):
             print(self.create_options)
             option = input('Digite a opção desejada: ')
+            # Cria uma publicação de texto
             if option == '1':
                 post = TextPost(self, input('Insira o título da publicação: '), input('Insira o texto da publicação: '))
+            # Cria uma publicação de imagem
             elif option == '2':
                 titulo = input('Insira o título da publicação: ')
+                # A publicação de imagem consiste em criar um link para algum arquivo da pasta ascii_arts, que deve conter uma figura em formato txt
                 link = input('Insira o link da imagem: ')
                 try:
                     open(f'ascii_arts/{link}.txt', 'r')
@@ -66,6 +71,7 @@ class User:
         else: print('Você já publicou demais por hoje, volte amanhã.')
         
     def build_feed(self, all_posts, count):
+        '''Mostra as publicações do usuário'''
         all_posts = [post for post in all_posts if not post.owner.private or post.owner is self]
         if count *5 > len(all_posts):
             print('Não há mais publicações.')
@@ -78,6 +84,7 @@ class User:
                 post.show_post()
     
     def build_my_feed(self, count):
+        '''Mostra as publicações visíveis ao usuário'''
         if count*5 > len(self.posts):
             print('Não há mais publicações.')
             return
@@ -89,6 +96,7 @@ class User:
                 post.show_post()
     
     def profile_menu(self):
+        '''Menu de perfil do usuário, permitindo que o usuário veja as próprias publicações e altere suas informações de cadastro'''
         print(self.name)
         print('='*30)
         count = 0

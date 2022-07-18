@@ -48,6 +48,7 @@ class Menu:
         return temp
 
     def run(self):
+        '''Cria um menu com as opções para login, cadastro e encerrar programa'''
         while True:
             print()
             print('Seja bem-vinde ao redwitter!')
@@ -75,6 +76,7 @@ class Menu:
                 print('Opção inválida!')
     
     def login_menu(self):
+        '''Pede por um nome de usuário e uma senha e faz o login caso o usuário exista'''
         if len(self.user_list) == 0:
             # Não há necessidade de acessar o perfil admin se a rede não tem usuários
             print('Não há usuários cadastrados.')
@@ -100,6 +102,7 @@ class Menu:
     
 
     def register_menu(self):
+        '''Pede as informações e cria um novo usuário, armazenando-o numa lista de usuários'''
         # Coleta os dados do usuário
         name = input("Insira seu nome de usuário: ")
         email = input("Insira um email válido: ")
@@ -118,6 +121,7 @@ class Menu:
             self.register_menu()
     
     def admin_menu(self):
+        '''Menu do usuário admin'''
         while True:
             print(self.admin_options)
             option = input('Digite a opção desejada: ')
@@ -137,6 +141,7 @@ class Menu:
                 print('Opção inválida!')
     
     def delete_user(self):
+        '''Pede o nome do usuário a ser deletado e o remove da lista de usuários'''
         # Coleta e confirma o nome do usuário a ser deletado
         name = input('Insira o nome de usuário que queres deletar: ')
         if not name == input('Confira o nome de usuário: '):
@@ -152,6 +157,7 @@ class Menu:
                 return
 
     def delete_post(self):
+        '''Pede o título da publicação a ser deletada e a remove da lista de publicações de seu dono'''
         posts = self.get_post_list()
         # Coleta e confirma o id da publicação a ser deletada
         id = input('Insira o título da publicação que queres deletar: ')
@@ -168,10 +174,13 @@ class Menu:
                 return
 
     def list_users(self):
+        '''Mostra o nome de cada usuário na tela'''
         for user in self.user_list:
+            print('='*30)
             print(user.name)
 
     def user_menu(self, user: User):
+        '''Menu do usuário logado, mostrando opções de criação, visualização e navegação de posts'''
         count = 0
         while True:
             print(self.user_options)
@@ -209,6 +218,8 @@ class Menu:
                 print('Opção inválida!')
 
     def search_profile(self, user: User):
+        '''Busca o perfil de um usuário existente na lista de usuários'''
+
         # Coleta o nome do usuário a ser buscado
         name = input('Insira o nome de usuário que queres buscar: ')
         # Busca o usuário na lista de usuários do programa
