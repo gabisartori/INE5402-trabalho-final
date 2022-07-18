@@ -168,4 +168,8 @@ class User:
         else: print('Mudança cancelada.')
 
     def change_password(self):
-        pass
+        new_password = input('Insira o novo nome: ')
+        confirm_password = input('Confirme a nova senha: ') == new_password
+        confirm = input('Confirma a alteração? (S/N) ').strip()[0].lower() == 's'
+        if confirm and confirm_password: self.password = sha256(new_password)
+        else: print('Mudança cancelada.')
