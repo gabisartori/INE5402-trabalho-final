@@ -162,12 +162,14 @@ class User:
         pass
 
     def change_name(self):
+        '''Pergunta o novo nome do usuário e altera o nome'''
         new_name = input('Insira o novo nome: ')
         confirm = input('Confirma a alteração? (S/N) ').strip()[0].lower() == 's'
         if confirm: self.name = new_name
         else: print('Mudança cancelada.')
 
     def change_password(self):
+        '''Altera a senha do usuário pedindo a senha nova e uma confirmação'''
         new_password = input('Insira o novo nome: ')
         confirm_password = input('Confirme a nova senha: ') == new_password
         confirm = input('Confirma a alteração? (S/N) ').strip()[0].lower() == 's'
