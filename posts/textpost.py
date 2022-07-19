@@ -9,12 +9,12 @@ class TextPost(Post):
     def show_post(self):
         '''Mostra a publicação na tela de forma organizada'''
         print('='*30)
-        if self.title:
-            print(self.owner.name + ": " + self.title)
+        if self.get_title():
+            print(self.get_owner().get_name() + ": " + self.get_title())
         else:
-            print(self.owner.name + " respondeu:")
-        print(self.content)
-        print("Likes: " + str(self.likes))
+            print(self.get_owner().get_name() + " respondeu:")
+        print(self.get_content())
+        print("Likes: " + str(self.get_likes()))
 
     def comment_menu(self, user):
         '''Adiciona um TextPost como comentário na lista de respostas do post'''
