@@ -22,7 +22,7 @@ class Post:
         # Checa se o usuário já curtiu a publicação
         if user not in self.liked_by:
             self.set_likes(self.get_likes() + 1)
-            self.get_likesd_by().append(user)
+            self.get_liked_by().append(user)
             print('Curtiu!')
         else:
             print('Você já curtiu esta publicação!')

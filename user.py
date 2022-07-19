@@ -42,10 +42,10 @@ class User:
 
     def allow_post(self, menu_creation_time):
         '''Retorna False se a conta tiver publicado mais de X vezes num Y intervalo de tempo'''
-        if not self.posts: return True
+        if not self.get_posts(): return True
         posts_by_minute = {}
-        for post in self.posts:
-            time_diff = post.created_at - menu_creation_time 
+        for post in self.get_posts():
+            time_diff = post.get_created_at() - menu_creation_time 
             time_diff_minutes = time_diff // 60
             if str(time_diff_minutes) in posts_by_minute.keys(): posts_by_minute[str(time_diff_minutes)] += 1
             else: posts_by_minute[str(time_diff_minutes)] = 1
@@ -81,12 +81,12 @@ class User:
             else:
                 print('Opção inválida!')
                 return
-            self.posts.insert(0, post)
+            self.get_posts().insert(0, post)
         else: print('Você já publicou demais por hoje, volte amanhã.')
         
     def build_feed(self, all_posts, count):
         '''Mostra as publicações do usuário'''
-        all_posts = [post for post in all_posts if not post.owner.private or post.owner is self]
+        all_posts = [post for post in all_posts if not post.get_owner().get_private() or post.get_owner() is self]
         if count *5 > len(all_posts):
             print('Não há mais publicações.')
             return
@@ -129,7 +129,7 @@ class User:
                 print('Opção inválida!')
 
     def profile_menu(self):
-        print(self.name)
+        print(self.get_name())
         print('='*30)
         count = 0
         while True:
@@ -166,7 +166,7 @@ class User:
         '''Pergunta o novo nome do usuário e altera o nome'''
         new_name = input('Insira o novo nome: ')
         confirm = input('Confirma a alteração? (S/N) ').strip()[0].lower() == 's'
-        if confirm: self.name = new_name
+        if confirm: self.set_name(new_name)
         else: print('Mudança cancelada.')
 
     def change_password(self):
@@ -179,7 +179,6 @@ class User:
 
     def set_name(self, name):
         '''Define o nome do usuário'''
-        self.name = name
         self.name = name
 
     def set_email(self, email):
