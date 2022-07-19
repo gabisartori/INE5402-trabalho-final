@@ -22,3 +22,19 @@ class TextPost(Post):
         reply = TextPost(user, '', comment)
         self.add_reply(reply)
     
+    def set_title(self, title):
+        '''Define o título da publicação'''
+        self.title = title
+    
+    def set_content(self, content):
+        '''Define o conteúdo da publicação'''
+        self.content = content
+    
+    def get_title(self):
+        '''Retorna o título da publicação'''
+        return self.title
+    
+    def get_content(self):
+        '''Retorna o conteúdo da publicação'''
+        return self.content
+    

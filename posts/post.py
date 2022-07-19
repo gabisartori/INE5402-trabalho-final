@@ -53,3 +53,52 @@ class Post:
         '''Mostra as respostas da publicação'''
         for reply in self.replies:
             reply.show_post()
+
+    def set_like(self, like):
+        '''Define o número de curtidas da publicação'''
+        self.likes = like
+    
+    def set_owner(self, owner):
+        '''Define o dono da publicação'''
+        self.owner = owner
+    
+    def set_replies(self, replies):
+        '''Define a lista de respostas da publicação'''
+        self.replies = replies
+    
+    def set_liked_by(self, liked_by):
+        '''Define a lista de quem curtiu a publicação'''
+        self.liked_by = liked_by
+    
+    def set_private(self, private):
+        '''Define se a publicação é privada'''
+        self.private = private
+    
+    def set_created_at(self, created_at):
+        '''Define a data de criação da publicação'''
+        self.created_at = created_at
+    
+    def get_like(self):
+        '''Retorna o número de curtidas da publicação'''
+        return self.likes
+    
+    def get_owner(self):
+        '''Retorna o dono da publicação'''
+        return self.owner
+    
+    def get_replies(self):
+        '''Retorna a lista de respostas da publicação'''
+        return self.replies
+    
+    def get_liked_by(self):
+        '''Retorna a lista de quem curtiu a publicação'''
+        return self.liked_by
+    
+    def get_private(self):
+        '''Retorna se a publicação é privada'''
+        return self.private
+    
+    def get_created_at(self):
+        '''Retorna a data de criação da publicação'''
+        return self.created_at
+    

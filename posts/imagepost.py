@@ -22,3 +22,18 @@ class ImagePost(Post):
         reply = TextPost(user, '', comment)
         self.add_reply(reply)
     
+    def set_title(self, title):
+        '''Define o título da publicação'''
+        self.title = title
+    
+    def set_image_link(self, image_link):
+        '''Define o link da imagem'''
+        self.image_link = image_link
+    
+    def get_title(self):
+        '''Retorna o título da publicação'''
+        return self.title
+    
+    def get_image_link(self):
+        '''Retorna o link da imagem'''
+        return self.image_link

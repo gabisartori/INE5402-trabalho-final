@@ -172,3 +172,36 @@ class User:
         confirm = input('Confirma a alteração? (S/N) ').strip()[0].lower() == 's'
         if confirm and confirm_password: self.password = sha256(new_password)
         else: print('Mudança cancelada.')
+
+    def set_name(self, name):
+        '''Define o nome do usuário'''
+        self.name = name
+        self.name = name
+
+    def set_email(self, email):
+        '''Define o email do usuário'''
+        self.email = email
+    
+    def set_private(self, private):
+        '''Define se o usuário é privado ou não'''
+        self.private = private
+    
+    def set_password(self, password):
+        '''Define a senha do usuário'''
+        self.password = password
+    
+    def get_name(self):
+        '''Retorna o nome do usuário'''
+        return self.name
+    
+    def get_email(self):
+        '''Retorna o email do usuário'''
+        return self.email
+    
+    def get_private(self):
+        '''Retorna se o usuário é privado ou não'''
+        return self.private
+    
+    def get_password(self):
+        '''Retorna a senha do usuário'''
+        return self.password

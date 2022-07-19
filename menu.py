@@ -233,3 +233,16 @@ class Menu:
                 other_user.profile_menu()
                 return
         print('Usuário não encontrado!')
+
+    def set_user_list(self, user_list):
+        '''Define a lista de usuários do programa'''
+        self.user_list = user_list
+    
+    def get_user_list(self):
+        '''Retorna a lista de usuários do programa'''
+        return self.user_list
+    
+    # Data de criação não deve mudar, então não vou criar o setter
+    def get_creation_time(self):
+        '''Retorna o tempo de criação do programa'''
+        return self.creation_time
