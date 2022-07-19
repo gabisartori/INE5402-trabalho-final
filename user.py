@@ -121,7 +121,7 @@ class User:
                 self.build_my_feed(count)
                 count += 1
             elif option == '2':
-                self.change_info_menu(self)
+                self.change_info_menu()
             elif option == '3':
                 print('Saindo do perfil.')
                 break
