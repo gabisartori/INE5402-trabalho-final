@@ -9,13 +9,13 @@ class ImagePost(Post):
     
     def show_post(self):
         print('='*30)
-        print(self.owner.name + ": " + self.title)
-        file = open(f'ascii_arts/{self.image_link}.txt', 'r')
+        print(self.get_owner().get_name() + ": " + self.get_title())
+        file = open(f'ascii_arts/{self.get_image_link()}.txt', 'r')
         for line in file:
             print(line, end='')
         print()
         
-        print("Likes: " + str(self.likes))
+        print("Likes: " + str(self.get_likes()))
 
     def comment_menu(self, user):
         comment = input('Digite o comentário: ')

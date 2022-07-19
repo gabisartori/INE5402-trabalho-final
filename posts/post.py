@@ -21,8 +21,8 @@ class Post:
         '''Incrementa o número de curtidas do post e adiciona o usuário que curtiu na lista de quem curtiu o post'''
         # Checa se o usuário já curtiu a publicação
         if user not in self.liked_by:
-            self.set_likes(self.get_like() + 1)
-            self.get_liked_by().append(user)
+            self.set_likes(self.get_likes() + 1)
+            self.get_likesd_by().append(user)
             print('Curtiu!')
         else:
             print('Você já curtiu esta publicação!')
@@ -78,7 +78,7 @@ class Post:
         '''Define a data de criação da publicação'''
         self.created_at = created_at
     
-    def get_like(self):
+    def get_likes(self):
         '''Retorna o número de curtidas da publicação'''
         return self.likes
     
