@@ -150,7 +150,11 @@ class User:
         print(self.change_info_options)
         option = input('Digite a opção desejada: ')
         if option == '1':
-            self.delete_account(self)
+            confirm = input('Tem certeza que deseja excluir sua conta? (S/N) ').strip()[0].lower() == 's'
+            if confirm: 
+                self.delete_account(self)
+                print('Usuário deletado com sucesso!')
+            else: print('Cancelando operação!')
         elif option == '2':
             self.change_name()
         elif option == '3':
@@ -167,7 +171,7 @@ class User:
 
     def change_password(self):
         '''Altera a senha do usuário pedindo a senha nova e uma confirmação'''
-        new_password = input('Insira o novo nome: ')
+        new_password = input('Insira a nova senha: ')
         confirm_password = input('Confirme a nova senha: ') == new_password
         confirm = input('Confirma a alteração? (S/N) ').strip()[0].lower() == 's'
         if confirm and confirm_password: self.password = sha256(new_password)
