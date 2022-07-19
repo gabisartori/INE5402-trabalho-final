@@ -186,6 +186,11 @@ class User:
         '''Define o email do usuário'''
         self.email = email
     
+    #?????????????????
+    def set_posts(self, posts):
+        '''Define as publicações do usuário'''
+        self.posts = posts
+    
     def set_private(self, private):
         '''Define se o usuário é privado ou não'''
         self.private = private
@@ -201,6 +206,10 @@ class User:
     def get_email(self):
         '''Retorna o email do usuário'''
         return self.email
+    
+    def get_posts(self):
+        '''Retorna as publicações do usuário'''
+        return self.posts
     
     def get_private(self):
         '''Retorna se o usuário é privado ou não'''

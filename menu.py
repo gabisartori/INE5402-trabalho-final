@@ -40,8 +40,8 @@ class Menu:
         
     def get_post_list(self):
         temp = []
-        for user in self.user_list:
-            for post in user.posts:
+        for user in self.get_user_list():
+            for post in user.get_posts():
                 temp.append(post)
         
         temp.sort(key= lambda x: x.created_at, reverse=True)
@@ -50,7 +50,7 @@ class Menu:
     def run(self):
         '''Cria um menu com as opções para login, cadastro e encerrar programa'''
         def delete_user(user):
-            self.user_list.remove(user)
+            self.get_user_list().remove(user)
         while True:
             print()
             print('Seja bem-vinde ao redwitter!')
@@ -69,17 +69,17 @@ class Menu:
             # Opção secreta para testes
             elif option == '0':
                 user = User('Gabriel', 'gabriel.sartorirangel@gmail.com', False, sha256('gabriel'), delete_user)
-                self.user_list.append(user)
+                self.get_user_list().append(user)
                 user = User('Sofia', 'sofia.sartori@gmail.com', False, sha256('sofia'), delete_user)
-                self.user_list.append(user)
+                self.get_user_list().append(user)
                 user = User('Gabriel Rcha', 'rocha@gmail.com', True, sha256('rocha'), delete_user)
-                self.user_list.append(user)            
+                self.get_user_list().append(user)            
             else:
                 print('Opção inválida!')
     
     def login_menu(self):
         '''Pede por um nome de usuário e uma senha e faz o login caso o usuário exista'''
-        if len(self.user_list) == 0:
+        if len(self.get_user_list()) == 0:
             # Não há necessidade de acessar o perfil admin se a rede não tem usuários
             print('Não há usuários cadastrados.')
             print('Para cadastrar um usuário, digite "2" no menu principal.')
@@ -88,12 +88,12 @@ class Menu:
         
         name = input('Insira o nome de usuário: ')
         password = input('Insira a senha: ')
-        for user in self.user_list:
+        for user in self.get_user_list():
             if name == self.admin_name and sha256(password) == self.password_hash:
                 # Incia o menu de administrador
                 self.admin_menu()
                 return
-            elif user.name == name and user.password == sha256(password):
+            elif user.get_name() == name and user.get_password() == sha256(password):
                 print()
                 print('Login realizado com sucesso!')
                 # Incia o menu do usuário logado
@@ -107,10 +107,10 @@ class Menu:
         '''Pede as informações e cria um novo usuário, armazenando-o numa lista de usuários'''
         # Coleta os dados do usuário
         def delete_user(user):
-            self.user_list.remove(user)
+            self.get_user_list().remove(user)
         name = input("Insira seu nome de usuário: ")
         email = input("Insira um email válido: ")
-        if any([user.email == email for user in self.user_list]):
+        if any([user.get_email() == email for user in self.get_user_list()]):
             print('Email já cadastrado! Tente novamente.')
             return
         private = input("Essa conta será privada? (s/n): ").strip()[0].lower() == 's'
@@ -118,7 +118,7 @@ class Menu:
         if password == input('Confira sua senha: '):
             # Cria o usuário e o adiciona na lista de usuários do programa
             user = User(name, email, private, sha256(password), delete_user)
-            self.user_list.append(user)
+            self.get_user_list().append(user)
             print("Usuário cadastrado com sucesso!")
         else:
             print('Senhas não conferem! Tente novamente.')
@@ -154,9 +154,9 @@ class Menu:
         confirm = input('Tem certeza que deseja deletar o usuário? (s/n): ').strip()[0].lower() != 's'
         if confirm: return
         # Busca e remove o usuário da lista de usuários do programa
-        for user in self.user_list:
-            if user.name == name:
-                self.user_list.remove(user)
+        for user in self.get_user_list():
+            if user.get_name() == name:
+                self.get_user_list().remove(user)
                 print('Usuário deletado com sucesso!')
                 return
 
@@ -172,16 +172,16 @@ class Menu:
         if confirm: return
         # Busca e remove a publicação da lista de publicações do usuário
         for post in posts:
-            if post.title == id:
-                post.owner.posts.remove(post)
+            if post.get_title() == id:
+                post.get_owner().get_posts().remove(post)
                 print('Publicação deletada com sucesso!')
                 return
 
     def list_users(self):
         '''Mostra o nome de cada usuário na tela'''
-        for user in self.user_list:
+        for user in self.get_user_list():
             print('='*30)
-            print(user.name)
+            print(user.get_name())
 
     def user_menu(self, user: User):
         '''Menu do usuário logado, mostrando opções de criação, visualização e navegação de posts'''
@@ -206,10 +206,10 @@ class Menu:
                 # Recebe a publicação a ser aberta e a exibe
                 publi = input('Insira o título da publicação a ser aberta: ')
                 for post in self.get_post_list():
-                    if post.title == publi and (not post.private or post.owner == user):
+                    if post.get_title() == publi and (not post.get_private() or post.get_owner() == user):
                         post.post_menu(user)
                         break
-                if not any(post.title == publi for post in user.posts):
+                if not any(post.get_title() == publi for post in user.get_posts()):
                     print('Publicação não encontrada!')
             elif option == '6':
                 # Coloca o contador a zero, de modo a mostrar as publicações mais recentes
@@ -227,8 +227,8 @@ class Menu:
         # Coleta o nome do usuário a ser buscado
         name = input('Insira o nome de usuário que queres buscar: ')
         # Busca o usuário na lista de usuários do programa
-        for other_user in self.user_list:
-            if other_user.name == name and other_user != user and not other_user.private:
+        for other_user in self.get_user_list():
+            if other_user.get_name() == name and other_user != user and not other_user.get_private():
                 # Incia o menu de perfil do usuário buscado
                 other_user.profile_menu()
                 return
