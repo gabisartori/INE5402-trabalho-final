@@ -206,7 +206,7 @@ class Menu:
                 # Recebe a publicação a ser aberta e a exibe
                 publi = input('Insira o título da publicação a ser aberta: ')
                 for post in self.get_post_list():
-                    if post.title == publi:
+                    if post.title == publi and (not post.private or post.owner == user):
                         post.post_menu(user)
                         break
                 if not any(post.title == publi for post in user.posts):
