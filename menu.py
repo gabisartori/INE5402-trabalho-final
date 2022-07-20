@@ -181,7 +181,7 @@ class Menu:
         '''Mostra o nome de cada usuário na tela'''
         for user in self.get_user_list():
             print('='*30)
-            print(user.get_name())
+            print(user.get_name() + ' : ' + user.get_email())
 
     def user_menu(self, user: User):
         '''Menu do usuário logado, mostrando opções de criação, visualização e navegação de posts'''
