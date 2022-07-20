@@ -72,7 +72,7 @@ class Menu:
                 self.get_user_list().append(user)
                 user = User('Sofia', 'sofia.sartori@gmail.com', False, sha256('sofia'), delete_user)
                 self.get_user_list().append(user)
-                user = User('Gabriel Rcha', 'rocha@gmail.com', True, sha256('rocha'), delete_user)
+                user = User('Gabriel Rocha', 'rocha@gmail.com', True, sha256('rocha'), delete_user)
                 self.get_user_list().append(user)            
             else:
                 print('Opção inválida!')
