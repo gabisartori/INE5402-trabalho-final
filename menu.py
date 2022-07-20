@@ -164,15 +164,15 @@ class Menu:
         '''Pede o título da publicação a ser deletada e a remove da lista de publicações de seu dono'''
         posts = self.get_post_list()
         # Coleta e confirma o id da publicação a ser deletada
-        id = input('Insira o título da publicação que queres deletar: ')
-        if not id == input('Confira o título da publicação: '):
+        title = input('Insira o título da publicação que queres deletar: ')
+        if not title == input('Confira o título da publicação: '):
             print('Títulos não conferem! Tente novamente.')
             return
         confirm = input('Tem certeza que deseja deletar a publicação? (s/n): ').strip()[0].lower() != 's'
         if confirm: return
         # Busca e remove a publicação da lista de publicações do usuário
         for post in posts:
-            if post.get_title() == id:
+            if post.get_title() == title:
                 post.get_owner().get_posts().remove(post)
                 print('Publicação deletada com sucesso!')
                 return
