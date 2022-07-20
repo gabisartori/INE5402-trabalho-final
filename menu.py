@@ -145,17 +145,17 @@ class Menu:
                 print('Opção inválida!')
     
     def delete_user(self):
-        '''Pede o nome do usuário a ser deletado e o remove da lista de usuários'''
+        '''Pede o email do usuário a ser deletado e o remove da lista de usuários'''
         # Coleta e confirma o nome do usuário a ser deletado
-        name = input('Insira o nome de usuário que queres deletar: ')
-        if not name == input('Confira o nome de usuário: '):
-            print('Nomes não conferem! Tente novamente.')
+        email = input('Insira o email de usuário que queres deletar: ')
+        if not email == input('Confira o nome de usuário: '):
+            print('Emails não conferem! Tente novamente.')
             return        
         confirm = input('Tem certeza que deseja deletar o usuário? (s/n): ').strip()[0].lower() != 's'
         if confirm: return
         # Busca e remove o usuário da lista de usuários do programa
         for user in self.get_user_list():
-            if user.get_name() == name:
+            if user.get_email() == email:
                 self.get_user_list().remove(user)
                 print('Usuário deletado com sucesso!')
                 return
